@@ -2,9 +2,7 @@
 
 Allows building Win32, Win64, OSX, Linux x86_64, ARM64 (aarch64) and Raspberry Pi ESP8266 toolchains in a Docker container.
 
-## Work In Progesss
-
-Builds work for GCC 4.8, 7.2, 9.3, 10.1, and 10.2.  Others not fully tested but were building last time they were tried.
+Builds work for GCC 4.8, 7.2, 9.3, 10.1, and 10.2.
 
 ## Downloading GCC/etc. sources
 
