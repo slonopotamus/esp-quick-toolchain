@@ -254,6 +254,7 @@ configure += --enable-languages=c,c++
 configure += --enable-lto
 configure += --enable-static=yes
 configure += --disable-libstdcxx-verbose
+configure += --enable-checking=all
 
 # Newlib configuration common
 CONFIGURENEWLIBCOM  = --with-newlib
