@@ -476,7 +476,7 @@ clean: .cleaninst.LINUX.clean .cleaninst.LINUX32.clean .cleaninst.WIN32.clean .c
 	(cd $(call arena,$@)/$(GCC_DIR); $(call setenv,$@); $(MAKE) install) >> $(call log,$@) 2>&1
 	touch $@
 
-.stage.%.libsdtcpp-nox: .stage.%.libstdcpp
+.stage.%.libstdcpp-nox: .stage.%.libstdcpp
 	echo STAGE: $@
 	# We copy existing stdc, adjust the makefile, and build a single .a to save much time
 	rm -rf $(call arena,$@)/$(GCC_DIR)/xtensa-lx106-elf/libstdc++-v3-nox > $(call log,$@) 2>&1
@@ -486,7 +486,7 @@ clean: .cleaninst.LINUX.clean .cleaninst.LINUX32.clean .cleaninst.WIN32.clean .c
 	cp $(call arena,$@)/$(GCC_DIR)/xtensa-lx106-elf/libstdc++-v3-nox/src/.libs/libstdc++.a xtensa-lx106-elf$(call ext,$@)/xtensa-lx106-elf/lib/libstdc++.a >> $(call log,$@) 2>&1
 	touch $@
 
-.stage.%.hal-config: .stage.%.libsdtcpp-nox
+.stage.%.hal-config: .stage.%.libstdcpp-nox
 	echo STAGE: $@
 	rm -rf $(call arena,$@)/hal > $(call log,$@) 2>&1
 	mkdir -p $(call arena,$@)/hal >> $(call log,$@) 2>&1
@@ -591,7 +591,7 @@ install: .stage.LINUX.install
 	#cd arena/newlib-install; $(call setenv,$@); $(REPODIR)/newlib/configure $(CONFIGURENEWLIBINSTALL); $(MAKE); $(MAKE) install
 	echo "-------- Building installable hal"
 	rm -rf arena/hal-install; mkdir -p arena/hal-install
-	cd arena/hal-install; $(call setenv,$@); $(REPODIR)/lx106-hal/configure --prefix=$(ARDUINO)/tools/sdk/libc --libdir=$(ARDUINO)/tools/sdk/lib --host=xtensa-lx106-elf $$(echo $(call configure,$@) | sed 's/--host=[a-zA-Z0-9_-]*//' | sed 's/--prefix=[a-zA-Z0-9_-\\]*//')
+	cd arena/hal-install; $(call setenv,$@); $(REPODIR)/lx106-hal/configure --prefix=$(ARDUINO)/tools/sdk/libc --libdir=$(ARDUINO)/tools/sdk/lib --host=xtensa-lx106-elf $$(echo $(call configure,$@) | sed 's/--host=[a-zA-Z0-9_-]*//' | sed 's/--prefix=[a-zA-Z0-9_-]*//')
 	cd arena/hal-install; $(call setenv,$@); $(MAKE) ; $(MAKE) install
 	echo "-------- Copying GCC libs"
 	#cp $(call install,$@)/lib/gcc/xtensa-lx106-elf/*/libgcc.a  $(ARDUINO)/tools/sdk/lib/.
