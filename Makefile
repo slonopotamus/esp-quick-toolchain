@@ -290,7 +290,8 @@ endif
 # Sets the environment variables for a subshell while building
 setenv = export CFLAGS_FOR_TARGET=$(CFFT); \
          export CXXFLAGS_FOR_TARGET=$(CFFT); \
-         export CFLAGS="-I$(call install,$(1))/include -pipe"; \
+         export CFLAGS="-I$(call install,$(1))/include -pipe -g -O2"; \
+         export CXXFLAGS="-pipe -g -O2"; \
          export LDFLAGS="-L$(call install,$(1))/lib"; \
          export PATH="$(call install,.stage.LINUX.stage)/bin:$${PATH}"; \
          export LD_LIBRARY_PATH="$(call install,.stage.LINUX.stage)/lib:$${LD_LIBRARY_PATH}"
